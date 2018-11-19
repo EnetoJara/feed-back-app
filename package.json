@@ -13,12 +13,14 @@
 	"author": "Ernesto Jara Olveda",
 	"license": "MIT",
 	"dependencies": {
-		"@babel/core": "^7.1.6",
 		"body-parser": "^1.18.3",
 		"cors": "^2.8.5",
-		"express": "^4.16.4"
+		"express": "^4.16.4",
+		"passport": "^0.4.0",
+		"passport-google-oauth20": "^1.0.0"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.1.6",
 		"@babel/cli": "^7.1.5",
 		"@babel/node": "^7.0.0",
 		"@babel/preset-env": "^7.1.6",
