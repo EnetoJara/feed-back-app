@@ -1,7 +1,20 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import mongoose from "mongoose";
 
 import { clientID, clientSecret } from "../config/keys";
+
+const User = mongoose.model("users");
+
+passport.serializeUser((user, done) => {
+	done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+	User.findById(id).then(user => {
+		done(null, user);
+	});
+});
 
 passport.use(
 	new GoogleStrategy(
@@ -10,11 +23,10 @@ passport.use(
 			clientSecret,
 			callbackURL: "/api/auth/google/callback"
 		},
-		(accessToken, refreshToken, profile, cb) => {
-			console.log("accessToken: ", accessToken);
-			console.log("refreshToken: ", refreshToken);
-			console.log("profile: ", profile);
-			console.log("cb: ", cb);
+		(token, tokenSecret, profile, done) => {
+			User.findOrCreate({ googleId: profile.id }, (err, user) => {
+				return done(err, user);
+			});
 		}
 	)
 );
