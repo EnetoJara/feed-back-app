@@ -8,9 +8,7 @@ api.get("/", auth);
 
 api.get(
 	"/google",
-	passport.authenticate("google", {
-		scope: ["profile", "email"]
-	})
+	passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 api.get("/google/callback", passport.authenticate("google"));
