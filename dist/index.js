@@ -16,7 +16,12 @@ app.use(_bodyParser.default.urlencoded({
   extended: false
 }));
 app.use((0, _cors.default)());
-app.use("*", _root.default);
+app.use("/api", _root.default);
+app.get("/", function (req, res) {
+  return res.status(200).send({
+    hehe: "hehe"
+  });
+});
 app.listen(PORT, function () {
   return console.log("Up and Running n.n");
 });

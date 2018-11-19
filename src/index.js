@@ -10,6 +10,8 @@ const app = express();
 app.use(bodyParse.urlencoded({ extended: false }));
 app.use(cors());
 
-app.use("*", rootRoute);
+app.use("/api", rootRoute);
+
+app.get("/", (req, res) => res.status(200).send({ hehe: "hehe" }));
 
 app.listen(PORT, () => console.log("Up and Running n.n"));
