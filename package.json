@@ -8,8 +8,6 @@
 		"npm": "6.4.1"
 	},
 	"scripts": {
-		"dev": "nodemon --exec babel-node src/index.js",
-		"build": "babel src --out-dir dist",
 		"start": "npm run build && node dist/index.js"
 	},
 	"author": "Ernesto Jara Olveda",
