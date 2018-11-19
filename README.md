@@ -8,7 +8,7 @@ well since on heroku we dont have access to the server there is no way to run ba
 
 "scripts": {
 "test": "echo \"Error: no test specified\" && exit 1",
-"start": "nodemon --exec babel-node src/index.js",
+"dev": "nodemon --exec babel-node src/index.js",
 "build": "babel src --out-dir dist",
 "serve": "node dist/index.js"
 }
