@@ -1,12 +1,9 @@
 {
 	"presets": [["@babel/preset-env", { "targets": { "node": "current" } }]],
 	"plugins": [
-		["minify-replace"],
-		["minify-mangle-names"],
 		["@babel/plugin-proposal-export-default-from"],
 		["@babel/plugin-syntax-dynamic-import"],
 		["@babel/plugin-transform-async-to-generator"],
-		["minify-constant-folding"],
 		["transform-remove-console", { "exclude": ["error", "warn"] }]
 	]
 }

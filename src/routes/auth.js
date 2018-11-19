@@ -8,9 +8,17 @@ api.get("/", auth);
 
 api.get(
 	"/google",
-	passport.authenticate("google", { scope: ["profile", "email"] })
+	passport.authenticate("google", {
+		scope: ["https://www.googleapis.com/auth/plus.login"]
+	})
 );
 
-api.get("/google/callback", passport.authenticate("google"));
+api.get(
+	"/google/callback",
+	passport.authenticate("google", { failureRedirect: "/login" }),
+	function(req, res) {
+		res.redirect("/api/");
+	}
+);
 
 export default api;

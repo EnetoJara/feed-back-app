@@ -6,6 +6,16 @@ import { clientID, clientSecret } from "../config/keys";
 
 const User = mongoose.model("users");
 
+passport.serializeUser((user, done) => {
+	done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+	User.findById(id).then(user => {
+		done(null, user);
+	});
+});
+
 passport.use(
 	new GoogleStrategy(
 		{
@@ -13,14 +23,10 @@ passport.use(
 			clientSecret,
 			callbackURL: "/api/auth/google/callback"
 		},
-		async (accessToken, refreshToken, profile, done) => {
-			const exists = await User.find({ googleId: profile.id });
-			if (exists) {
-				return done(null, exists);
-			} else {
-				const saved = await new User({ googleId: profile.id }).save();
-				return done(null, saved);
-			}
+		(token, tokenSecret, profile, done) => {
+			User.findOrCreate({ googleId: profile.id }, (err, user) => {
+				return done(err, user);
+			});
 		}
 	)
 );
