@@ -3,15 +3,23 @@ import bodyParse from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import passport from "passport";
+import cookieSession from "cookie-session";
+
 import rootRoute from "./routes/root";
 import authRoute from "./routes/auth";
 
 import "./models/user";
-import { dbLocalHost } from "./config/keys";
+import { dbLocalHost, cookieKey } from "./config/keys";
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+app.use(
+	cookieSession({
+		maxAge: 30 * 24 * 60 * 60 * 1000,
+		keys: [cookieKey]
+	})
+);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParse.urlencoded({ extended: false }));
