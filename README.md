@@ -1,24 +1,20 @@
-# feed-back-app
+####
 
-udemy course
+# NODE JS BABEL 7 & WEBPACK 4
 
-well since on heroku we dont have access to the server there is no way to run babel on the server, there fore we need to compile the code locally
+###
 
-# ADD this scripts for development, or in any other server that you get access
+1.- clone repo: `git clone https://github.com/EnetoJara/feed-back-app.git`
+2.- get into the folder: `cd feed-back-app`
+3.- run: `npm i`
 
-# Usar estos scripts endeveloment
+# running the proyect on development mode
 
-"scripts": {
-"test": "echo \"Error: no test specified\" && exit 1",
-"dev": "nodemon --exec babel-node src/index.js",
-"build": "babel src --out-dir dist",
-"build:rm": "rm -rf ./dist",
-"serve": "node dist/index.js",
-"start": "node dist/index.js"
-}
+`npm run dev`
 
-# use this ones to make a deploy en heroku
+# running the proyect on production mode
 
-"scripts": {
-"start": "node dist/index.js"
-}
+run:
+1.- `npm run build`
+NOTE: also instead can run `babel src --out-dir dist` if you dont want to compress the code
+2.- `npm start`

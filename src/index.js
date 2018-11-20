@@ -5,11 +5,12 @@ import mongoose from "mongoose";
 import passport from "passport";
 import cookieSession from "cookie-session";
 
+import { dbLocalHost, cookieKey } from "./config/keys";
 import rootRoute from "./routes/root";
 import authRoute from "./routes/auth";
 
-import "./models/user";
-import { dbLocalHost, cookieKey } from "./config/keys";
+require("./models/user");
+require("./service/passport");
 
 const PORT = process.env.PORT || 5000;
 
@@ -24,7 +25,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParse.urlencoded({ extended: false }));
 app.use(cors());
-import "./service/passport";
 app.use("/api", rootRoute);
 app.use("/api/auth", authRoute);
 
@@ -33,6 +33,7 @@ mongoose.connect(
 	{ useNewUrlParser: true }
 );
 const db = mongoose.connection;
+
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
 	console.log("mongoDB Up and Runnig");
