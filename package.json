@@ -13,8 +13,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "nodemon --exec babel-node src/index.js",
 		"npm:rm": "rm -rf ./node_modules",
-		"start": "node dist/index.js",
-		"build": "webpack --mode production"
+		"start": "NODE_ENV='production' clientID='get yow own shit, nigka' clientSecret='jijijij' DBname='😨👌' secretString='#NiñosBien' node dist/index.js",
+		"build": "webpack --mode production",
+		"prod": "npm run build && rm -rf ./src && npm start"
 	},
 	"dependencies": {
 		"body-parser": "^1.18.3",
@@ -30,6 +31,7 @@
 		"@babel/cli": "^7.1.5",
 		"@babel/core": "^7.1.6",
 		"@babel/node": "^7.0.0",
+		"@babel/plugin-syntax-dynamic-import": "^7.0.0",
 		"@babel/preset-env": "^7.1.6",
 		"babel-loader": "^8.0.4",
 		"nodemon": "^1.18.6",
